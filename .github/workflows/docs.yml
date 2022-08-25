@@ -1,0 +1,44 @@
+name: Build and Publish Docs
+
+on:
+  workflow_run:
+    workflows: ["Build and Test"]
+    branches: [main]
+    types: [completed]
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build_and_publish_docs:
+    runs-on: windows-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          default: true
+
+      - name: Build docs
+        uses: actions-rs/cargo@v1
+        with:
+          command: doc
+
+      - run: git config --global core.autocrlf false
+
+      - name: Deploy docs
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/doc
