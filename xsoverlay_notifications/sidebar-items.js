@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["DEFAULT_ADDR",""],["DEFAULT_PORT",""]],"enum":[["Error",""]],"struct":[["Notification","https://xiexe.github.io/XSOverlayDocumentation/#/NotificationsAPI?id=xsoverlay-message-object"],["XSOverlayNotifier",""]]};

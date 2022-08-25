@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["cfg_if","itoa","log","mio","pin_project_lite","proc_macro2","quick_error","quote","ryu","serde","serde_derive","serde_json","socket2","syn","tokio","unicode_ident","winapi","windows_sys","windows_x86_64_msvc","xsoverlay_notifications"];
